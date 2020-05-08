@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import './ui/regist/regist.dart';
+import 'package:provider/provider.dart';
+import 'ui/regist/regist.dart';
+import 'model/regist_model.dart';
 
 void main() => runApp(KokologApp());
 
@@ -8,7 +10,10 @@ class KokologApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Regist(),
+      home: ChangeNotifierProvider(
+        create: (_) => RegistModel(),
+        child: Regist(),
+      ),
       title: 'ココログ',
       theme: ThemeData(
         // This is the theme of your application.

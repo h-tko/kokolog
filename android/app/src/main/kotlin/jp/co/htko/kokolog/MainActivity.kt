@@ -1,4 +1,4 @@
-package com.example.kokolog
+package jp.co.htko.kokolog
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

@@ -9,12 +9,14 @@ enum Kokoro {
 }
 
 class RegistModel extends ChangeNotifier {
-  Kokoro _kokoro;
-  String _comment;
+  Kokoro _kokoro = Kokoro.normal;
+  String _comment = "";
 
   String getComment() => _comment;
 
   setComment(String comment) {
     this._comment = comment;
+
+    notifyListeners();
   }
 }

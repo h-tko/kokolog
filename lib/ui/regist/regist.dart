@@ -28,16 +28,17 @@ class Regist extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(top: 50.0),
+            padding: EdgeInsets.only(
+              top: 50.0,
+            ),
             child: Center(
               child: BaseText(
-//                text: '今日1日はどうでしたか？',
-                text: Provider.of<RegistModel>(context).getComment(),
+                text: '今日1日はどうでしたか？',
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 50.0),
+            padding: EdgeInsets.only(top: 50.0, right: 50.0, left: 50.0),
             child: Align(
               alignment: Alignment.topCenter,
               child: Theme(
