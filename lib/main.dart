@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kokolog/config/colors.dart';
 import 'package:kokolog/di/registory.dart';
 import 'package:provider/provider.dart';
-import 'ui/regist/regist.dart';
-import 'view_model/regist_view_model.dart';
+import 'ui/home/home.dart';
 
 void main() => runApp(KokologApp());
 
@@ -13,7 +13,7 @@ class KokologApp extends StatelessWidget {
     return MaterialApp(
       home: ChangeNotifierProvider(
         create: (_) => ViewModelRegistory.makeRegistViewModel(),
-        child: Regist(),
+        child: Home(),
       ),
       title: 'ココログ',
       theme: ThemeData(
@@ -26,7 +26,7 @@ class KokologApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: primaryColor,
       ),
     );
   }

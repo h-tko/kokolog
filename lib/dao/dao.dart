@@ -33,7 +33,7 @@ abstract class Dao {
       month INTEGER NOT NULL,
       day INTEGER NOT NULL,
       kokoro INTEGER NOT NULL,
-      comment TEXT NOT NULL
+      reason TEXT NOT NULL
     );
     """);
   }

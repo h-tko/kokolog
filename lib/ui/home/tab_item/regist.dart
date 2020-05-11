@@ -13,20 +13,52 @@ class Regist extends StatelessWidget {
     _kokoro =
         Provider.of<RegistViewModel>(context).getKokoro().value.toDouble();
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('ココログ')),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Stack(
-              children: <Widget>[
-                _buildInputs(context),
-              ],
-            ),
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Stack(
+            children: <Widget>[
+              _buildInputs(context),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
+  }
+
+  _showErrorDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: Text("入力に誤りがあります"),
+            content:
+                Text(Provider.of<RegistViewModel>(context).errorsToString()),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("確認"),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          );
+        });
+  }
+
+  _showSuccessDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: Text("完了"),
+            content: Text("登録されました"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("確認"),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          );
+        });
   }
 
   Widget _buildInputs(BuildContext context) {
@@ -83,6 +115,33 @@ class Regist extends StatelessWidget {
                       contentPadding: EdgeInsets.all(10.0),
                     ),
                   ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 40.0),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: RaisedButton(
+                  child: Text("登録"),
+                  color: Colors.white,
+                  shape: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  onPressed: () {
+                    var future =
+                        Provider.of<RegistViewModel>(context, listen: false)
+                            .onPressedRegist();
+
+                    future.then((result) {
+                      if (!result) {
+                        _showErrorDialog(context);
+                        return;
+                      }
+
+                      _showSuccessDialog(context);
+                    });
+                  },
                 ),
               ),
             ),

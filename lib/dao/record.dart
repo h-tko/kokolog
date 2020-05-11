@@ -4,7 +4,7 @@ import 'package:sqflite/sql.dart';
 
 class Record extends Dao {
   @override
-  String get tableName => throw UnimplementedError();
+  String get tableName => "records";
 
   Future<int> save(RecordModel record) async {
     final db = await database;

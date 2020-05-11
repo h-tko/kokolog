@@ -4,9 +4,9 @@ class RecordModel {
   int month;
   int day;
   int kokoro;
-  String comment;
+  String reason;
 
-  RecordModel({this.year, this.month, this.day, this.kokoro, this.comment});
+  RecordModel({this.year, this.month, this.day, this.kokoro, this.reason});
 
   Map<String, dynamic> toMap() {
     return {
@@ -15,7 +15,7 @@ class RecordModel {
       "month": this.month,
       "day": this.day,
       "kokoro": this.kokoro,
-      "comment": this.comment,
+      "reason": this.reason,
     };
   }
 }
