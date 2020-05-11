@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kokolog/di/registory.dart';
 import 'package:provider/provider.dart';
 import 'ui/regist/regist.dart';
-import 'model/regist_model.dart';
+import 'view_model/regist_view_model.dart';
 
 void main() => runApp(KokologApp());
 
@@ -11,7 +12,7 @@ class KokologApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: ChangeNotifierProvider(
-        create: (_) => RegistModel(),
+        create: (_) => ViewModelRegistory.makeRegistViewModel(),
         child: Regist(),
       ),
       title: 'ココログ',

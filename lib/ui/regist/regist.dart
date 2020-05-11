@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kokolog/config/colors.dart';
-import 'package:kokolog/model/regist_model.dart';
+import 'package:kokolog/model/kokoro_enum.dart';
+import 'package:kokolog/view_model/regist_view_model.dart';
 import 'package:kokolog/ui/components/base_text.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +10,8 @@ class Regist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _kokoro = Provider.of<RegistModel>(context).getKokoro().value.toDouble();
+    _kokoro =
+        Provider.of<RegistViewModel>(context).getKokoro().value.toDouble();
 
     return Scaffold(
       appBar: AppBar(title: const Text('ココログ')),
@@ -52,7 +54,7 @@ class Regist extends StatelessWidget {
                 divisions: 4,
                 label: KokoroExt.fromDouble(_kokoro).description,
                 onChanged: (double value) {
-                  Provider.of<RegistModel>(context, listen: false)
+                  Provider.of<RegistViewModel>(context, listen: false)
                       .setKokoro(KokoroExt.fromDouble(value));
                 },
               ),
@@ -67,13 +69,14 @@ class Regist extends StatelessWidget {
                     primaryColorDark: textFormPrimaryColor,
                   ),
                   child: TextField(
-                    onSubmitted: Provider.of<RegistModel>(
+                    onSubmitted: Provider.of<RegistViewModel>(
                       context,
                       listen: false,
                     ).setComment,
+                    maxLength: 50,
                     decoration: InputDecoration(
                       fillColor: textFormPrimaryColor,
-                      hintText: "それはなぜですか？",
+                      hintText: "それはなぜですか？（50文字以内）",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
