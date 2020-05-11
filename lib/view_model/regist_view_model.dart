@@ -12,7 +12,7 @@ class RegistViewModel extends ChangeNotifier {
 
   RegistViewModel(this.repo);
 
-  String getComment() => _reason;
+  String getReason() => _reason;
 
   String errorsToString() {
     var result = "";
@@ -35,6 +35,14 @@ class RegistViewModel extends ChangeNotifier {
 
   setKokoro(Kokoro kokoro) {
     this._kokoro = kokoro;
+
+    notifyListeners();
+  }
+
+  reset() {
+    this._kokoro = Kokoro.normal;
+    this._reason = "";
+    this._errors = {};
 
     notifyListeners();
   }

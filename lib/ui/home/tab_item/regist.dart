@@ -62,6 +62,8 @@ class Regist extends StatelessWidget {
   }
 
   Widget _buildInputs(BuildContext context) {
+    final reason = Provider.of<RegistViewModel>(context).getReason();
+
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(right: 50.0, left: 50.0),
@@ -101,6 +103,7 @@ class Regist extends StatelessWidget {
                     primaryColorDark: textFormPrimaryColor,
                   ),
                   child: TextField(
+                    controller: TextEditingController()..text = reason,
                     onSubmitted: Provider.of<RegistViewModel>(
                       context,
                       listen: false,
@@ -138,6 +141,10 @@ class Regist extends StatelessWidget {
                         _showErrorDialog(context);
                         return;
                       }
+
+                      // リセット
+                      Provider.of<RegistViewModel>(context, listen: false)
+                          .reset();
 
                       _showSuccessDialog(context);
                     });
