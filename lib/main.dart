@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kokolog/config/colors.dart';
-import 'package:kokolog/di/registory.dart';
-import 'package:provider/provider.dart';
-import 'ui/home/home.dart';
+import 'package:kokolog/ui/home/home.dart';
 
 void main() => runApp(KokologApp());
 
@@ -11,10 +9,7 @@ class KokologApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ChangeNotifierProvider(
-        create: (_) => ViewModelRegistory.makeRegistViewModel(),
-        child: Home(),
-      ),
+      home: Home(),
       title: 'ココログ',
       theme: ThemeData(
         // This is the theme of your application.
