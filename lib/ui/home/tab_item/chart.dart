@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:kokolog/model/kokoro_enum.dart';
 import 'package:kokolog/view_model/chart_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -18,14 +19,21 @@ class Chart extends StatelessWidget {
     return Center(
       child: charts.TimeSeriesChart(
         Provider.of<ChartViewModel>(context).chartDataList,
-        animate: true,
-        behaviors: [
-          charts.ChartTitle(
-            '履歴',
-            behaviorPosition: charts.BehaviorPosition.top,
-            titleOutsideJustification: charts.OutsideJustification.start,
+        animate: false,
+        primaryMeasureAxis: charts.NumericAxisSpec(
+          tickFormatterSpec: charts.BasicNumericTickFormatterSpec(
+            (num value) {
+              Kokoro kokoro;
+              Kokoro.values.forEach((element) {
+                if (element.value == value) {
+                  kokoro = element;
+                }
+              });
+
+              return kokoro.description;
+            },
           ),
-        ],
+        ),
       ),
     );
   }

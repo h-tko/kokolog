@@ -42,7 +42,21 @@ extension KokoroExt on Kokoro {
   }
 
   static Kokoro fromDouble(double value) {
-    return Kokoro.values
-        .firstWhere((element) => element.value == value.toInt());
+    var result;
+    Kokoro.values.forEach((element) {
+      if (element.value == value) {
+        result = element;
+      }
+    });
+
+    if (result == null) {
+      throw new Exception("想定の範囲外の値が渡されました。");
+    }
+
+    return result;
+  }
+
+  static Kokoro fromNum(num value) {
+    return fromDouble(value.toDouble());
   }
 }
