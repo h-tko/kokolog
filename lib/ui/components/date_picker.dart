@@ -16,8 +16,6 @@ class DatePicker {
   }
 
   show(BuildContext context) {
-    final today = DateTime.now();
-
     showCupertinoModalPopup<void>(
         context: context,
         builder: (BuildContext context) {

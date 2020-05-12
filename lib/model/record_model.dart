@@ -18,7 +18,6 @@ class RecordModel {
 
   Map<String, dynamic> toMap() {
     return {
-      "id": this.id,
       "year": this.year,
       "month": this.month,
       "day": this.day,

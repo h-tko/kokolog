@@ -16,7 +16,7 @@ class Chart extends StatelessWidget {
     }
 
     return Center(
-      child: charts.LineChart(
+      child: charts.TimeSeriesChart(
         Provider.of<ChartViewModel>(context).chartDataList,
         animate: true,
         behaviors: [

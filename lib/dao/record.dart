@@ -17,8 +17,12 @@ class Record extends Dao {
 
       existsData.then((data) async {
         if (data != null) {
-          record.id = data.id;
-          return await db.update(tableName, record.toMap());
+          return await db.update(
+            tableName,
+            record.toMap(),
+            where: "id = ?",
+            whereArgs: [data.id],
+          );
         }
 
         return await db.insert(

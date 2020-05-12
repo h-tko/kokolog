@@ -4,7 +4,7 @@ import 'package:kokolog/repository/record_repository.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class ChartViewModel extends ChangeNotifier {
-  List<charts.Series<dynamic, num>> chartDataList = [];
+  List<charts.Series<ChartData, DateTime>> chartDataList = [];
 
   final RecordRepository repo;
 
@@ -22,9 +22,9 @@ class ChartViewModel extends ChangeNotifier {
       final List<ChartData> datas =
           list.map((e) => ChartData.fromRecordModel(e)).toList();
 
-      chartDataList.add(charts.Series<ChartData, int>(
+      chartDataList.add(charts.Series<ChartData, DateTime>(
         id: 'Record',
-        domainFn: (ChartData data, _) => data.day,
+        domainFn: (ChartData data, _) => data.date,
         measureFn: (ChartData data, _) => data.kokoro,
         data: datas,
       ));
