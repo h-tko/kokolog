@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kokolog/config/colors.dart';
 import 'package:kokolog/ui/home/home.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() => runApp(KokologApp());
 
@@ -8,6 +9,8 @@ class KokologApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting();
+
     return MaterialApp(
       home: Home(),
       title: 'ココログ',

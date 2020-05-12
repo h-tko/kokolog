@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:kokolog/config/colors.dart';
 import 'package:kokolog/model/kokoro_enum.dart';
+import 'package:kokolog/ui/components/date_picker.dart';
 import 'package:kokolog/view_model/regist_view_model.dart';
 import 'package:kokolog/ui/components/base_text.dart';
 import 'package:provider/provider.dart';
+import 'package:kokolog/extension/datetime_ext.dart';
+import 'package:intl/intl.dart';
 
-class Regist extends StatelessWidget {
+class Regist extends StatelessWidget implements DatePickerDelegate {
   var _kokoro = 0.0;
+  var _context;
+  final _dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    _context = context;
     _kokoro =
         Provider.of<RegistViewModel>(context).getKokoro().value.toDouble();
 
@@ -76,6 +82,41 @@ class Regist extends StatelessWidget {
               child: Center(
                 child: BaseText(
                   text: '今日1日はどうでしたか？',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 50.0,
+              ),
+              child: Center(
+                child: Container(
+                  width: 120.0,
+                  child: Theme(
+                    data: ThemeData(
+                      primaryColor: textFormPrimaryColor,
+                      primaryColorDark: textFormPrimaryColor,
+                    ),
+                    child: TextField(
+                      controller: _dateController
+                        ..text = Provider.of<RegistViewModel>(context)
+                            .getDate()
+                            .formattedString(),
+                      readOnly: true,
+                      decoration: InputDecoration(
+                        fillColor: textFormPrimaryColor,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        contentPadding: EdgeInsets.all(10.0),
+                      ),
+                      onTap: () => DatePicker(
+                              delegate: this,
+                              current: DateFormat('yyyy/MM/dd')
+                                  .parse(_dateController.text))
+                          .show(context),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -156,5 +197,10 @@ class Regist extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  onSelected(DateTime newDateTime) {
+    Provider.of<RegistViewModel>(_context, listen: false).setDate(newDateTime);
   }
 }

@@ -6,6 +6,7 @@ import 'package:kokolog/repository/record_repository.dart';
 class RegistViewModel extends ChangeNotifier {
   var _kokoro = Kokoro.normal;
   var _reason = "";
+  var _date = DateTime.now();
   var _errors = <String, String>{};
 
   final RecordRepository repo;
@@ -13,6 +14,13 @@ class RegistViewModel extends ChangeNotifier {
   RegistViewModel(this.repo);
 
   String getReason() => _reason;
+
+  setDate(DateTime date) {
+    _date = date;
+    notifyListeners();
+  }
+
+  DateTime getDate() => _date;
 
   String errorsToString() {
     var result = "";
@@ -53,15 +61,12 @@ class RegistViewModel extends ChangeNotifier {
       return false;
     }
 
-    // 現在日付の取得
-    final now = DateTime.now();
-
     await repo.save(RecordModel(
       kokoro: _kokoro.value,
       reason: _reason,
-      year: now.year,
-      month: now.month,
-      day: now.day,
+      year: _date.year,
+      month: _date.month,
+      day: _date.day,
     ));
 
     return true;
