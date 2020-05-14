@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "858821249069",
+    "firebase_url": "https://kokolog-ef914.firebaseio.com",
+    "project_id": "kokolog-ef914",
+    "storage_bucket": "kokolog-ef914.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858821249069:android:1a9dbf960b8d47534050a4",
+        "android_client_info": {
+          "package_name": "jp.co.htko.kokolog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858821249069-at3i255mj6in64ocd10vs592lui33gnk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa8Wrl0-XZn0ZAPhB9RWZOEMIi6MdL0HM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858821249069-at3i255mj6in64ocd10vs592lui33gnk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

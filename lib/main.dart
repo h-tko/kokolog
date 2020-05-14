@@ -1,4 +1,6 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:kokolog/config/app_config.dart';
 import 'package:kokolog/config/colors.dart';
 import 'package:kokolog/ui/home/home.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -9,6 +11,12 @@ class KokologApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Crashlytics.instance.enableInDevMode = AppConfig().isDebug;
+
+    if (!AppConfig().isDebug) {
+      FlutterError.onError = Crashlytics.instance.recordFlutterError;
+    }
+
     initializeDateFormatting();
 
     return MaterialApp(
